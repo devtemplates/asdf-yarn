@@ -4,7 +4,7 @@ set -o nounset -o pipefail -o errexit
 IFS=$'\t\n'
 
 asdf_yarn_fail() {
-  >&2 echo "⛔ $*"
+  echo >&2 "⛔ $*"
   exit 1
 }
 
@@ -79,6 +79,7 @@ asdf_yarn_install() {
 
   # Finish the installation
   mv "${ASDF_YARN_DIR}" "${ASDF_INSTALL_PATH}"
+  chmod 0755 "${ASDF_INSTALL_PATH}"
 }
 
 [ "${ASDF_INSTALL_TYPE}" == 'ref' ] && asdf_yarn_fail "This plugin does not support installing by ref."
